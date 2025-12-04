@@ -12,6 +12,9 @@ def login_view(request):
 def logout_view(request):
     pass
 
+def register_view(request):
+    pass
+
 
 
 @login_required
