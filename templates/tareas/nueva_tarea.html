@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'tareas/base.html' %}
 
 {% block title %}Agregar Tarea - Gestor de Tareas{% endblock %}
 
@@ -26,6 +26,18 @@
                             </div>
                         {% endif %}
                     </div>
+
+                     <div class="mb-4">
+                        <label for="{{ form.descripcion.id_for_label }}" class="form-label">
+                            <i class="bi bi-card-text"></i> Prioridad
+                        </label>
+                        {{ form.prioridad }}
+                        {% if form.prioridad.errors %}
+                            <div class="text-danger mt-1">
+                                {{ form.prioridad.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
                     
                     <div class="mb-4">
                         <label for="{{ form.descripcion.id_for_label }}" class="form-label">
@@ -38,9 +50,21 @@
                             </div>
                         {% endif %}
                     </div>
+
+                    <div class="mb-4">
+                        <label for="{{ form.descripcion.id_for_label }}" class="form-label">
+                            <i class="bi bi-card-text"></i> Categoría
+                        </label>
+                        {{ form.categoria }}
+                        {% if form.categoria.errors %}
+                            <div class="text-danger mt-1">
+                                {{ form.categoria.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
                     
                     <div class="d-flex justify-content-between">
-                        <a href="{% url 'lista_tareas' %}" class="btn btn-secondary">
+                        <a href="{% url 'dashboard' %}" class="btn btn-secondary">
                             <i class="bi bi-arrow-left"></i> Cancelar
                         </a>
                         <button type="submit" class="btn btn-primary btn-lg">

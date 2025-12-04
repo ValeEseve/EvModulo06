@@ -47,6 +47,8 @@ def nueva_tarea(request):
             nueva_tarea.usuario = request.user
             nueva_tarea.save()
             return redirect('dashboard')
+        print("Tarea no enviada, datos inválidos")
+        print(form.errors)
     else:
         form = TareaForm()
     return render(request, 'tareas/nueva_tarea.html', {'form': form})   
