@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{tarea.nombre}}</h1>
+<p>Prioridad: {{tarea.priodidad}}</p>
+<p>Descripción: {{tarea.descripcion}}</p>
+<p>Fecha de creación: {{tarea.fecha_creacion}}</p>
+<p>Fecha de vencimiento: {{tarea.fecha_vencimiento}}</p>
+<p>Estado: {{tarea.estado}}</p>
+<a href="{% url 'dashboard' %}" class="btn btn-primary">Volver a la lista de tareas</a>
+{% endblock %}
