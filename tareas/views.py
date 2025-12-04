@@ -8,7 +8,7 @@ def home(request):
 
 # Vistas para autenticación
 def login_view(request):
-    pass
+    return render(request, 'tareas/login.html')
 
 def logout_view(request):
     pass
