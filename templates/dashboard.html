@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Lista de Tareas</h1>
+<div class="d-flex flex-wrap gap-3">
+    {% for tarea in tareas %}
+        {% include 'components/tarea_card.html' with tarea=tarea %}
+    {% empty %}
+        <p>No hay tareas disponibles.</p>
+    {% endfor %}
+</div>
+{% endblock %}

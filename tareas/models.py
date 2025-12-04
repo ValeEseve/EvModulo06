@@ -26,3 +26,24 @@ class Tarea(models.Model):
 
     def __str__(self):
         return self.titulo
+
+    def get_prioridad_display_badge(self):
+        badges = {
+            1: 'bg-secondary',
+            2: 'bg-info',
+            3: 'bg-warning',
+            4: 'bg-danger',
+        }
+        return badges.get(self.prioridad, 'bg-secondary')
+    
+    def esta_vencida(self):
+        """Verifica si la tarea está vencida"""
+        if self.fecha_vencimiento and not self.completada:
+            from django.utils import timezone
+            return timezone.now() > self.fecha_vencimiento
+        return False
+    
+    class Meta:
+        ordering = ['-fecha_creacion']
+        verbose_name = 'Tarea'
+        verbose_name_plural = 'Tareas'
