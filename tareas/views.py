@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
-from tareas.forms import TareaForm
+from django.contrib.auth import authenticate, login, logout
+from tareas.forms import RegisterForm, TareaForm
 from tareas.models import Tarea
 
 def home(request):
@@ -21,10 +21,19 @@ def login_view(request):
     return render(request, 'tareas/login.html')
 
 def logout_view(request):
-    pass
+    logout(request)
+    return redirect('home')
 
 def register_view(request):
-    pass
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("login")  
+    else:
+        form = RegisterForm()
+
+    return render(request, "tareas/register.html", {"form": form})
 
 
 
