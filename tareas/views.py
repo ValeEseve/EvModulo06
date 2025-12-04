@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
 from tareas.forms import TareaForm
 from tareas.models import Tarea
 
@@ -8,6 +9,15 @@ def home(request):
 
 # Vistas para autenticación
 def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+        user = authenticate(request, username=username, password=password)
+        if user:
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            return render(request, 'dashboard.html', {'error': 'Credenciales inválidas'})
     return render(request, 'tareas/login.html')
 
 def logout_view(request):
