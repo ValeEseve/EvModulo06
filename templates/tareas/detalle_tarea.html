@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% block title %}{{tarea.nombre}}{% endblock %}
+
 {% block content %}
 <h1>{{tarea.nombre}}</h1>
 <p>Prioridad: {{tarea.priodidad}}</p>
