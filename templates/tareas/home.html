@@ -4,7 +4,12 @@
 {% block content %}
 <h1>Bienvenido!</h1>
 <div class="mt-4 d-flex flex-column align-items-center">
-<h2>Inicia sesión aquí:</h2>
-<a href="{% url 'login_view' %}" class="btn btn-primary">Iniciar Sesión</a>
+    <h2>Inicia sesión aquí:</h2>
+    <a href="{% url 'login_view' %}" class="btn btn-primary">Iniciar Sesión</a>
+</div>
+<div class="text-center mt-3">
+    <small>¿No tienes cuenta?
+        <a href="{% url 'register_view' %}">Regístrate aquí</a>
+    </small>
 </div>
 {% endblock %}
