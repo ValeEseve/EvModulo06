@@ -1,0 +1,27 @@
+<div class="modal fade" id="modalEliminarTarea{{tarea.id}}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar eliminación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+
+            <div class="modal-body">
+                ¿Estás segura de que quieres eliminar la tarea <strong>{{ tarea.titulo }}</strong>?
+            </div>
+
+            <div class="modal-footer">
+                <form method="post" action="{% url 'eliminar_tarea' tarea.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

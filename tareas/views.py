@@ -57,4 +57,8 @@ def nueva_tarea(request):
 
 @login_required
 def eliminar_tarea(request, id):
-    pass
+    tarea = get_object_or_404(Tarea, id=id)
+    if request.method == 'POST':
+        tarea.delete()
+        return redirect('/dashboard/')
+    return redirect('/dashboard/')

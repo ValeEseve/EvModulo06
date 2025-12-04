@@ -2,8 +2,8 @@
 {% block title %}{{tarea.nombre}}{% endblock %}
 
 {% block content %}
-<h1>{{tarea.nombre}}</h1>
-<p>Prioridad: {{tarea.priodidad}}</p>
+<h1>{{tarea.titulo}}</h1>
+<p>Prioridad: {{tarea.get_prioridad_display_name}}</p>
 <p>Descripción: {{tarea.descripcion}}</p>
 <p>Fecha de creación: {{tarea.fecha_creacion}}</p>
 <p>Fecha de vencimiento: {{tarea.fecha_vencimiento}}</p>

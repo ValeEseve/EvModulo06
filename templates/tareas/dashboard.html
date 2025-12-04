@@ -1,11 +1,18 @@
 {% extends 'tareas/base.html' %}
 {% block content %}
-<h1>Lista de Tareas</h1>
+<h1>Lista de Tareas</h1> <a class="btn btn-primary mb-5" href="{% url 'nueva_tarea' %}">
+    <i class="bi bi-plus-circle"></i> Nueva Tarea
+</a>
+
 <div class="d-flex flex-wrap gap-3">
     {% for tarea in tareas %}
-        {% include 'tareas/components/tarea_card.html' with tarea=tarea %}
+
+    {% include 'tareas/components/tarea_card.html' with tarea=tarea %}
+    {% include 'tareas/components/modal_confirmar_borrar.html' with tarea=tarea %}
+
     {% empty %}
-        <p>No hay tareas disponibles.</p>
+    <p>No hay tareas disponibles.</p>
     {% endfor %}
 </div>
+
 {% endblock %}
