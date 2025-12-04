@@ -1,5 +1,6 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
+from tareas.forms import TareaForm
 from tareas.models import Tarea
 
 def home(request):
@@ -29,7 +30,18 @@ def detalle_tarea(request, id):
 
 @login_required
 def nueva_tarea(request):
-    pass
+    if request.method == 'POST':
+        form = TareaForm(request.POST)
+        if form.is_valid():
+            nueva_tarea = form.save(commit=False)
+            nueva_tarea.usuario = request.user
+            nueva_tarea.save()
+            return redirect('dashboard')
+    else:
+        form = TareaForm()
+    return render(request, 'tareas/nueva_tarea.html', {'form': form})   
+
+
 
 @login_required
 def eliminar_tarea(request, id):
