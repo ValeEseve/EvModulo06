@@ -8,8 +8,25 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("username", "email", "password1", "password2")
+        fields = ["username", "email", "password1", "password2"]
+        error_messages = {
+            "username": {
+                "required": "El nombre de usuario es obligatorio.",
+                "unique": "Este nombre ya está en uso.",
+            },
+        }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["password1"].error_messages.update({
+            "required": "Debes ingresar una contraseña.",
+        })
+        self.fields["password2"].error_messages.update({
+            "required": "Debes confirmar la contraseña.",
+            "password_mismatch": "Las contraseñas no coinciden.",
+        })
+
+        
 class TareaForm(forms.ModelForm):
     class Meta:
         model = Tarea

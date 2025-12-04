@@ -1,16 +1,17 @@
-<div class="card" style="width: 18rem;">
+<div class="card {% if tarea.completada %}opacity-50{% endif %}" style="width: 18rem;">
     <div class="card-body {{ tarea.get_prioridad_display_badge }}">
-        
-        <h5 class="card-title">
+
+        <h5 class="card-title d-flex justify-content-between">
             <a href="{% url 'detalle_tarea' tarea.id %}" class="text-decoration-none">
                 {{ tarea.titulo }}
             </a>
-            <span class="badge font-monospace {{ tarea.get_prioridad_display_badge_bg }}">
-                {{ tarea.get_prioridad_display_name }}
-            </span>
+
         </h5>
 
-        <h6 class="card-subtitle mb-2 text-body-secondary">{{ tarea.categoria }}</h6>
+        <h6 class="card-subtitle mb-2 text-body-secondary">{{ tarea.categoria }} <span
+                class="badge font-monospace {{ tarea.get_prioridad_display_badge_bg }}">
+                {{ tarea.get_prioridad_display_name }}
+            </span></h6>
 
         <p class="card-text">{{ tarea.descripcion }}</p>
 
@@ -18,7 +19,14 @@
             <small>fecha creación: {{ tarea.fecha_creacion }}</small>
         </h6>
 
-        <a class="btn" href="#">✏️</a>
+        <form method="post" action="{% url 'toggle_tarea' tarea.id %}" class="d-inline">
+            {% csrf_token %}
+            {% if tarea.completada %}
+            <button class="btn btn-success" title="Marcar como pendiente">↩️</button>
+            {% else %}
+            <button class="btn btn-outline-success" title="Marcar como completada">✔️</button>
+            {% endif %}
+        </form>
 
         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalEliminarTarea{{ tarea.id }}">
             🗑️

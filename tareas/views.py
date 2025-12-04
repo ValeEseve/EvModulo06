@@ -17,9 +17,10 @@ def login_view(request):
             login(request, user)
             return redirect('dashboard')
         else:
-            return render(request, 'dashboard.html', {'error': 'Credenciales inválidas'})
+            return render(request, 'tareas/login.html', {'error': 'Credenciales inválidas'})
     return render(request, 'tareas/login.html')
 
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('home')
@@ -39,7 +40,7 @@ def register_view(request):
 
 @login_required
 def lista_tareas(request):
-    tareas = Tarea.objects.filter(usuario=request.user)
+    tareas = Tarea.objects.filter(usuario=request.user.id).order_by('-fecha_creacion')
     return render(request, 'tareas/dashboard.html', {'tareas': tareas})
 
 @login_required
@@ -61,6 +62,13 @@ def nueva_tarea(request):
     else:
         form = TareaForm()
     return render(request, 'tareas/nueva_tarea.html', {'form': form})   
+
+@login_required
+def toggle_completada(request, id):
+    tarea = get_object_or_404(Tarea, id=id)
+    tarea.completada = not tarea.completada
+    tarea.save()
+    return redirect('dashboard')
 
 
 
