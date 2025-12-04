@@ -29,10 +29,28 @@ class Tarea(models.Model):
 
     def get_prioridad_display_badge(self):
         badges = {
-            1: 'bg-success-subtle',
-            2: 'bg-info-subtle',
+            1: 'bg-light',
+            2: 'bg-success-subtle',
             3: 'bg-warning-subtle',
             4: 'bg-danger-subtle',
+        }
+        return badges.get(self.prioridad, 'bg-secondary')
+    
+    def get_prioridad_display_badge_bg(self):
+        badges = {
+            1: 'bg-secondary',
+            2: 'bg-success',
+            3: 'bg-warning',
+            4: 'bg-danger',
+        }
+        return badges.get(self.prioridad, 'bg-secondary')
+    
+    def get_prioridad_display_name(self):
+        badges = {
+            1: 'Baja',
+            2: 'Media',
+            3: 'Alta',
+            4: 'Urgente',
         }
         return badges.get(self.prioridad, 'bg-secondary')
     

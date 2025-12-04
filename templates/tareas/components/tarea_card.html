@@ -1,9 +1,8 @@
 <div class="card" style="width: 18rem;">
     <div class="card-body  {{ tarea.get_prioridad_display_badge }}">
-        <h5 class="card-title">{{tarea.titulo}}</h5>
+        <h5 class="card-title">{{tarea.titulo}} <span class="badge {{tarea.get_prioridad_display_badge_bg}}">{{tarea.get_prioridad_display_name}}</span></h5>
         <h6 class="card-subtitle mb-2 text-body-secondary">{{tarea.categoria}}</h6>
         <p class="card-text">{{tarea.descripcion}}</p>
-        <a href="#" class="card-link">Card link</a>
         <h6 class="card-subtitle mb-2 text-body-secondary"> fecha creación: {{tarea.fecha_creacion}}</h6>
 
     </div>
